@@ -9,7 +9,7 @@
 export default {
   name: 'Dashboard',
   mounted () {
-    console.log('abracadabra')
+    console.log('abracadabra0')
   }
 }
 </script>
