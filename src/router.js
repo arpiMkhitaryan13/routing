@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './views/Home.vue';
-import About from './views/About'
 import Dashboard from './components/Dashboard'
 import Profile from './components/Profile'
 import Table from './components/Table'
@@ -14,11 +12,11 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: Home
-    // },
+    {
+      path: '/',
+      name: 'home',
+      component: Dashboard
+    },
     {
       path: '/dashboard',
       name: 'dashboard',
@@ -29,11 +27,6 @@ export default new Router({
       name: 'profile',
       component: Profile
     },
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: Home
-    // },
     {
       path: '/table',
       name: 'table',
@@ -49,10 +42,5 @@ export default new Router({
       name: 'notifications',
       component: Notifications
     },
-    {
-      path: '/about',
-      component: About
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
   ]
 })

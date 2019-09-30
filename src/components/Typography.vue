@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-  <h1>Typography</h1>
+    <h1>Typography</h1>
   </div>
 </template>
 
