@@ -14,32 +14,32 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: Dashboard
     },
     {
       path: '/dashboard',
-      name: 'dashboard',
+      name: 'Dashboard',
       component: Dashboard
     },
     {
       path: '/profile',
-      name: 'profile',
+      name: 'Profile',
       component: Profile
     },
     {
       path: '/table',
-      name: 'table',
+      name: 'Table',
       component: Table
     },
     {
       path: '/typography',
-      name: 'typography',
+      name: 'Typography',
       component: Typography
     },
     {
       path: '/notifications',
-      name: 'notifications',
+      name: 'Notifications',
       component: Notifications
     },
   ]

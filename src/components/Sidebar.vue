@@ -10,10 +10,10 @@
           </div>
         </div>
       </router-link>
-      <p class="v-list__tile__title title">Vuetify MD</p>
+      <p >Vuetify MD</p>
     </div>
     <hr class="v-divider theme--dark">
-    <div role="listitem">
+    <div class="sidebarItem">
       <v-icon
         class="v-icon mdi mdi-view-dashboard theme--light tertiary--text"
         color="white"
@@ -22,25 +22,25 @@
         Dashboard
       </router-link>
     </div>
-    <div>
+    <div class="sidebarItem">
       <v-icon class="v-icon mdi mdi-account theme--dark" color="white"/>
       <router-link to="/profile">
         User Profile
       </router-link>
     </div>
-    <div>
+    <div class="sidebarItem">
       <v-icon class="v-icon mdi mdi-clipboard-outline theme--dark" color="white"/>
       <router-link to="/table">
         Table
       </router-link>
     </div>
-    <div>
+    <div class="sidebarItem">
       <v-icon class="v-icon mdi mdi-format-font theme--dark" color="white"/>
       <router-link to="/typography">
         Typography
       </router-link>
     </div>
-    <div>
+    <div class="sidebarItem">
       <v-icon class="v-icon mdi mdi-bell theme--dark" color="white"/>
       <router-link to="/notifications">
         Notifications

@@ -1,22 +1,7 @@
 <template>
   <v-app>
     <div id="app">
-      <div class="header">
-        <div class="hamburgerManu"
-             :class="{ 'active' : isBurgerActive }"
-             @click="burgerToggle">
-          <v-btn
-            v-on="on"
-            depressed
-            color="transparent"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="#000000" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
-            </svg>
-          </v-btn>
-        </div>
-        <h1>here goes header</h1>
-      </div>
+      <Header @burgerToggle="burgerToggle"/>
       <div class="sidebar">
         <div class="sidebar-backdrop" @click="closeSidebarPanel" v-if="isBurgerActive"></div>
         <transition name="slide">
@@ -27,11 +12,13 @@
         </transition>
       </div>
       <div class="nav">
-      <Sidebar/>
+        <Sidebar/>
       </div>
       <div class="content">
-        <router-view/>
       </div>
+      <transition name="fade">
+        <router-view/>
+      </transition>
       <div class="footer">
         <footer class="v-footer v-footer--absolute theme--light" id="core-footer" style="height: 82px;">
           <div class="footer-items">
@@ -78,19 +65,20 @@
           </div>
         </footer>
       </div>
-
-
     </div>
   </v-app>
 </template>
 
 <script>
-  import Sidebar from "./components/Sidebar";
+    import Sidebar from "./components/Sidebar";
+    import Header from "./components/Header";
+
     export default {
-        components:{Sidebar},
+        components: {Sidebar, Header},
         data() {
             return {
                 isBurgerActive: false,
+                on: null,
                 items: [
                     {title: 'Home', link: '/'},
                     {title: 'Creative Tim', link: 'https://www.creative-tim.com'},
@@ -99,11 +87,11 @@
                 ],
             }
         },
-        methods:{
-            burgerToggle(){
+        methods: {
+            burgerToggle() {
                 this.isBurgerActive = !this.isBurgerActive;
             },
-            closeSidebarPanel(){
+            closeSidebarPanel() {
                 this.isBurgerActive = false;
             }
 
@@ -120,17 +108,18 @@
     border-top: .5px solid #080808ad;
   }
 
-  @mixin  sidebar {
+  @mixin sidebar {
     position: fixed;
     height: 100%;
     width: 260px;
     display: flex;
-    padding: 15px;
+    padding: 10px;
     flex-direction: column;
     overflow: auto;
     align-items: start;
     background-image: linear-gradient(rgba(27, 27, 27, 0.74), rgba(27, 27, 27, 0.74)), url(https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg);
     background-position: center center;
+    background-size: cover;
   }
 
   * {
@@ -140,6 +129,10 @@
 
   body {
     overflow: hidden;
+  }
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent; /* make scrollbar transparent */
   }
 
   #app {
@@ -154,56 +147,75 @@
     @include sidebar;
     transition: .5s;
     transform: translateX(0);
+
   }
 
-
-.sidebarWrapper{
-  text-align: start;
-
-  > :nth-child(n+2) {
-    margin: 2.5em 15px 0 15px;
-  }
-  .routesWrapper {
-    display: flex;
-    align-items: center;
-
-    p {
-      margin-bottom: 0;
+  .hamburgerManu{
+    >i {
+      height: 100% !important;
     }
   }
 
-  a {
-    margin-left: 1.2em;
-    color: #ebecf5 !important;
-    text-decoration: none;
 
-    &.router-link-exact-active {
-      color: #42b983 !important;
+  .sidebarWrapper {
+    text-align: start;
+    width: 100%;
+    padding: 10px 0;
+
+    > :nth-child(n+2) {
+      margin: 10px 15px;
+      padding: 10px 10px;
+      border-radius: 4px;
+    }
+    .sidebarItem:hover {
+      background-color: rgba(119, 119, 119, 0.76);
+    }
+
+
+    .routesWrapper {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin-bottom: 0;
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+      }
+    }
+
+    a {
+      margin-left: 1.2em;
+      color: #ebecf5 !important;
+      text-decoration: none;
+
+      &.router-link-exact-active {
+        color: #42b983 !important;
+      }
+    }
+
+    .profileWrapper {
+      display: flex;
+      align-items: center;
+      font-size: 1.3em;
+
+      .avatar {
+        display: inline-block;
+        margin-right: .5em;
+        width: 40px;
+        height: 40px;
+        background-position: center;
+        background-size: cover;
+        border-radius: 100%;
+      }
+    }
+
+    hr {
+      margin: 15px auto 0 !important;
+      width: calc(100% - 5px);
+      padding: 0;
     }
   }
-
-  .profileWrapper {
-    display: flex;
-    align-items: center;
-    font-size: 1.3em;
-
-    .avatar {
-      display: inline-block;
-      margin-right: .5em;
-      width: 40px;
-      height: 40px;
-      background-position: center;
-      background-size: cover;
-      border-radius: 100%;
-    }
-  }
-
-  hr {
-    margin: 15px auto 0 !important;
-    width: calc(100% - 5px);
-  }
-}
-
 
 
   #core-footer {
@@ -228,7 +240,7 @@
     top: 0;
     display: flex;
     justify-content: flex-start;
-    background: grey;
+/*background-color: grey;*/
     height: 3em;
 
   }
@@ -257,11 +269,11 @@
     .hamburgerManu {
       display: block;
     }
-    .nav{
+    .nav {
       transform: translateX(-260px);
     }
 
-    #core-footer{
+    #core-footer {
       left: 0;
       width: 100%;
     }
@@ -276,9 +288,9 @@
       display: none;
     }
   }
+
   .slide-enter-active,
-  .slide-leave-active
-  {
+  .slide-leave-active {
     transition: transform 0.2s ease;
   }
 
@@ -289,7 +301,7 @@
   }
 
   .sidebar-backdrop {
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, .5);
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -299,8 +311,21 @@
   }
 
   .sidebar-panel {
-   @include sidebar;
+    @include sidebar;
     background-size: cover;
     z-index: 999;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition-property: opacity;
+    transition-duration: .25s;
+  }
+
+  .fade-enter-active {
+    transition-delay: .25s;
+  }
+
+  .fade-enter, .fade-leave-active {
+    opacity: 0
   }
 </style>
