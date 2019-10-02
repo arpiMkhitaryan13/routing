@@ -9,30 +9,31 @@
     </div>
     <div class="iconsWrapper">
       <div class="searchInput">
-          <input placeholder="Search... "
-            @click="changeAnimationClass"
-            @blur="onBlurSearchInput">
+        <input placeholder="Search... "
+               @click="changeAnimationClass"
+               @blur="onBlurSearchInput">
 
         <div class="divider">
           <div class="dividerAfter" :class="{'active': animationToggle }"></div>
         </div>
       </div>
       <div>
-        <v-icon
-          class="v-icon mdi mdi-view-dashboard theme--light tertiary--text"
-        />
         <router-link to="/dashboard">
+          <v-icon
+            class="v-icon mdi mdi-view-dashboard theme--light tertiary--text"
+          />
+
         </router-link>
       </div>
       <div class="notification">
-        <v-icon class="v-icon mdi mdi-bell theme--light"/>
         <router-link to="/notifications">
+          <v-icon class="v-icon mdi mdi-bell theme--light"/>
         </router-link>
         <span>3</span>
       </div>
       <div>
-        <v-icon class="v-icon mdi mdi-account theme--light"/>
         <router-link to="/profile">
+          <v-icon class="v-icon mdi mdi-account theme--light"/>
         </router-link>
       </div>
     </div>
@@ -53,9 +54,9 @@
                 this.$emit('burgerToggle');
             },
             changeAnimationClass() {
-              this.animationToggle = !this.animationToggle;
+                this.animationToggle = !this.animationToggle;
             },
-            onBlurSearchInput(){
+            onBlurSearchInput() {
                 this.animationToggle = false;
             }
         }
@@ -115,11 +116,15 @@
           transition: .5s;
           border-bottom: .5px solid #9c27b0;
         }
+
         .active {
           transform: scaleX(1);
         }
-
       }
+    }
+
+    a {
+      text-decoration: none;
     }
 
     i {
@@ -153,6 +158,7 @@
       font-weight: 400;
     }
   }
+
   @media (max-width: 1010px) {
     .searchInput {
       display: none;

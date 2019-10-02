@@ -240,13 +240,13 @@
     top: 0;
     display: flex;
     justify-content: flex-start;
-/*background-color: grey;*/
     height: 3em;
 
   }
 
   .content {
-    padding: 1.5em 0;
+    padding: 41px 23px;
+    margin-left: 250px;
   }
 
   @media (max-width: 770px) {
@@ -268,6 +268,9 @@
     }
     .hamburgerManu {
       display: block;
+    }
+    .content {
+      margin-left: 0;
     }
     .nav {
       transform: translateX(-260px);
