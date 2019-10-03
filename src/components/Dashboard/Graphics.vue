@@ -135,4 +135,20 @@
       margin-bottom: 0;
     }
   }
+
+  @media (max-width: 990px) {
+    .offset {
+      width: 100% !important;
+      img {
+        width: 100%;
+      }
+    }
+    .card {
+      width: 100% !important;
+      margin-bottom: 2em;
+    }
+    .cards {
+      flex-direction: column;
+    }
+  }
 </style>
