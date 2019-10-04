@@ -74,7 +74,6 @@
     padding: 10px;
     position: relative;
     width: 100%;
-
   }
 
   .card {

@@ -95,7 +95,7 @@
                 this.isBurgerActive = false;
             }
 
-        }
+        },
     }
 </script>
 
@@ -331,4 +331,9 @@
   .fade-enter, .fade-leave-active {
     opacity: 0
   }
+  .divider1 {
+    border: .5px solid #9999995c;
+    width: 100%;
+  }
+
 </style>
