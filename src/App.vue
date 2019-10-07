@@ -170,6 +170,9 @@
     .sidebarItem:hover {
       background-color: rgba(119, 119, 119, 0.76);
     }
+    .sidebarItem.router-link-active {
+      background-color: #42b983 ;
+    }
 
 
     .routesWrapper {
@@ -190,7 +193,7 @@
       text-decoration: none;
 
       &.router-link-exact-active {
-        color: #42b983 !important;
+        background-color: #42b983 !important;
       }
     }
 

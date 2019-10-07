@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div  class="header">
     <div class="routerName">
       <div class="hamburgerManu"
            @click="burgerToggle">
@@ -7,16 +7,20 @@
       </div>
       <p>{{ $route.name }}</p>
     </div>
-    <div class="iconsWrapper">
-      <div class="searchInput">
-        <input placeholder="Search... "
-               @click="changeAnimationClass"
-               @blur="onBlurSearchInput">
+    <div  class="iconsWrapper">
+      <div class="inputWrapper" @click="changeAnimationClass"
+           @blur="onBlurSearchInput">
+        <div :class="{'transformingDivOnClick': inputFocused}" class="input"> Search</div>
+        <div class="searchInput">
+          <input
+          >
 
-        <div class="divider">
-          <div class="dividerAfter" :class="{'active': animationToggle }"></div>
+          <div class="divider">
+            <div class="dividerAfter" :class="{'active': animationToggle }"></div>
+          </div>
         </div>
       </div>
+
       <div>
         <router-link to="/dashboard">
           <v-icon
@@ -47,6 +51,7 @@
         data() {
             return {
                 animationToggle: false,
+                inputFocused: false,
             }
         },
         methods: {
@@ -57,6 +62,7 @@
                 this.animationToggle = !this.animationToggle;
             },
             onBlurSearchInput() {
+                console.log(13)
                 this.animationToggle = false;
             }
         }
@@ -90,6 +96,13 @@
   .iconsWrapper {
     display: flex;
     align-items: center;
+
+    .input {
+      position: relative;
+      left: 50px;
+      top: 10px;
+      color: black;
+    }
 
     .searchInput {
       padding: 8px 0;
@@ -163,6 +176,9 @@
     .searchInput {
       display: none;
     }
+  }
+  .inputWrapper {
+    display: flex;
   }
 
 </style>

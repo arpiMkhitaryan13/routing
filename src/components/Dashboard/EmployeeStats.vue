@@ -1,6 +1,6 @@
 <template>
   <div class="eStatsWrapper">
-    <div class="offset">
+    <div class="_offset">
       <div>Employee Stats</div>
       <p>New employees on 15th September, 2016</p>
     </div>
@@ -74,7 +74,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss">
   .eStatsWrapper {
     border-radius: 6px;
     background-color: white;
@@ -105,14 +105,14 @@
       }
     }
 
-    .offset {
+    ._offset {
       position: relative;
       top: -18px;
       height: 83px;
       max-width: calc(100% - 20px);
       padding: 15px;
       margin: 0 auto;
-      background: linear-gradient(60deg, #ffa726, #fb8c00) !important;;
+      background: linear-gradient(60deg, #ffa726, #fb8c00);
       border-radius: 6px;
       font-size: 14px;
       font-weight: 200;
