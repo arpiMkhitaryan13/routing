@@ -1,8 +1,10 @@
 <template>
   <div class="eStatsWrapper">
-    <div class="_offset">
+    <div
+      class="offset"
+      :style="{background: backgroundColor}">
       <div>Employee Stats</div>
-      <p>New employees on 15th September, 2016</p>
+      <p>New employees on 15th September, 2016 </p>
     </div>
     <div class="eStatsContent">
       <table>
@@ -12,7 +14,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="employeeData in $options.employeeDataList ">
+        <tr v-for="employeeData in resultList ">
           <td v-for="data in employeeData">{{data}}</td>
           <div class="divider1"/>
         </tr>
@@ -29,52 +31,36 @@
     export default {
         name: "EmployeeStats",
         mixins: [helpers],
-        employeeDataList: [
-            {
-                id: 1,
-                name: 'Arpi Mkhitaryan',
-                salary: '$10,000',
-                country: 'Armenia',
-                city: 'Yerevan',
-            },
-            {
-                id: 2,
-                name: 'Dakota Rice',
-                salary: '$35,738',
-                country: 'Niger',
-                city: 'Tunrhout',
-            },
-            {
-                id: 3,
-                name: 'Minerva Hooper',
-                salary: '$23,738',
-                country: 'Curaçao',
-                city: 'Sinaai-Waas',
-            },
-            {
-                id: 4,
-                name: 'Philip Chanley',
-                salary: '$38,735',
-                country: 'Korea, South',
-                city: 'Gloucester',
-            },
-            {
-                id: 5,
-                name: 'Doris Greene',
-                salary: '$63,542',
-                country: 'Malawi',
-                city: 'Feldkirchen in Kārnten',
-            },
-        ],
+        props: ['backgroundColor', 'rightProperties'],
+
         data() {
+
             return {
-                headers: Object.keys(this.$options.employeeDataList[0]),
+                headers: '',
+                requiredProperties: ['id', 'name', 'country', 'city', 'salary'],
+                employeeDataList: [],
+                dataList: [],
+                resultList: [],
             }
+        },
+        created() {
+            fetch('http://localhost:2000/table')
+                .then(response => response.json())
+                .then(result => {
+                    this.dataList = result;
+                    console.log(result,'result');
+                    this.dataList.map(obj => {
+                        let objWithCurrectOrder = Object.assign(...(this.rightProperties || this.requiredProperties).map(k => ({[k]: obj[k]})));
+                        this.headers = Object.keys(objWithCurrectOrder);
+                        this.resultList.push(objWithCurrectOrder);
+                    })
+
+                });
         },
     }
 </script>
 
-<style  lang="scss">
+<style scoped lang="scss">
   .eStatsWrapper {
     border-radius: 6px;
     background-color: white;
@@ -94,18 +80,20 @@
         font-weight: 200;
         padding: 12px 8px;
       }
+
       td {
         padding: 12px 6px;
         white-space: nowrap;
         color: rgba(0, 0, 0, .55);
         font-family: Roboto, sans-serif;
       }
+
       tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
       }
     }
 
-    ._offset {
+    .offset {
       position: relative;
       top: -18px;
       height: 83px;

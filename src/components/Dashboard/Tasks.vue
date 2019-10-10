@@ -120,7 +120,7 @@
 
     .task {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between !important;
       align-items: center;
       padding: 5px 0;
 

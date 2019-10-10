@@ -75,6 +75,7 @@
 
     export default {
         components: {Sidebar, Header},
+
         data() {
             return {
                 isBurgerActive: false,
@@ -86,6 +87,14 @@
                     {title: 'Blog', link: 'https://blog.creative-tim.com'},
                 ],
             }
+        },
+        mounted() {
+            // fetch('http://localhost:2000/table')
+            //     .then(response => response.json())
+            //     .then(result => {
+            //         console.log(result, 'result');
+            //         // this.messages = result;
+            //     });
         },
         methods: {
             burgerToggle() {
@@ -130,6 +139,7 @@
   body {
     overflow: hidden;
   }
+
   ::-webkit-scrollbar {
     width: 0;
     background: transparent; /* make scrollbar transparent */
@@ -150,12 +160,11 @@
 
   }
 
-  .hamburgerManu{
-    >i {
+  .hamburgerManu {
+    > i {
       height: 100% !important;
     }
   }
-
 
   .sidebarWrapper {
     text-align: start;
@@ -167,24 +176,13 @@
       padding: 10px 10px;
       border-radius: 4px;
     }
+
     .sidebarItem:hover {
       background-color: rgba(119, 119, 119, 0.76);
     }
+
     .sidebarItem.router-link-active {
-      background-color: #42b983 ;
-    }
-
-
-    .routesWrapper {
-      display: flex;
-      align-items: center;
-
-      p {
-        margin-bottom: 0;
-        font-family: Roboto, sans-serif;
-        font-weight: 400;
-        font-size: 18px;
-      }
+      background-color: #42b983;
     }
 
     a {
@@ -192,8 +190,18 @@
       color: #ebecf5 !important;
       text-decoration: none;
 
-      &.router-link-exact-active {
-        background-color: #42b983 !important;
+    }
+
+    .routesWrapper {
+      display: flex;
+      align-items: center;
+      background-color: inherit;
+
+      p {
+        margin-bottom: 0;
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+        font-size: 18px;
       }
     }
 
@@ -314,6 +322,7 @@
     top: 0;
     left: 0;
     cursor: pointer;
+    z-index: 1;
   }
 
   .sidebar-panel {
@@ -334,6 +343,7 @@
   .fade-enter, .fade-leave-active {
     opacity: 0
   }
+
   .divider1 {
     border: .5px solid #9999995c;
     width: 100%;

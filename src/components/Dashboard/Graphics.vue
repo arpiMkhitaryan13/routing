@@ -63,6 +63,7 @@
 
   .cards {
     display: flex;
+    justify-content: space-between;
     flex-wrap: initial;
     list-style: none;
     margin: 0;
